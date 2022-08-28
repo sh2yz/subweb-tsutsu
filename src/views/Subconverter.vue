@@ -253,7 +253,7 @@ export default {
         customBackend: [
               {label: "萌萌の专属后端": "http://192.168.2.7:25500/sub?" },
 	      {label: "萌萌の备用后端": "http://yzzz.tk:25500/sub?" },
-	      ]
+	      ],
         backendOptions:  [
           {
             label: "萌萌の后端",
@@ -268,7 +268,7 @@ export default {
                 value:
                   "http://yzzz.tk:25500/sub?"
               },
-            ]
+            ],
         remoteConfig: [
           {
             label: "萌萌の专属规则",
