@@ -76,7 +76,18 @@
                   placeholder="请选择"
                   style="width: 100%"
                 >
-                  <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
+                  <el-option-group
+                      v-for="group in options.customBackend"
+                      :key="group.label"
+                      :label="group.label"
+                    >
+                      <el-option
+                        v-for="item in group.options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                      ></el-option>
+                    </el-option-group>
 
                 </el-select>
 
@@ -251,10 +262,6 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: [
-              {label: "萌萌の专属后端": "http://192.168.2.7:25500/sub?" },
-	      {label: "萌萌の备用后端": "http://yzzz.tk:25500/sub?" },
-	      ],
-        backendOptions:  [
           {
             label: "萌萌の后端",
             options: [
@@ -266,9 +273,11 @@ export default {
               {
                 label: "萌萌の备用后端",
                 value:
-                  "http://yzzz.tk:25500/sub?"
-              },
-            ],
+                  "http://192.168.2.7:25500/sub?"
+              }
+            ]
+          }
+         ],
         remoteConfig: [
           {
             label: "萌萌の专属规则",
