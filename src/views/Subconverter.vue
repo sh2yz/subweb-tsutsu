@@ -467,8 +467,8 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.notify();
-    this.getBackendVersion();
+    this.customBackend();
+    this.remoteConfig();
   },
   methods: {
     onCopy() {
