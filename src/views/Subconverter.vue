@@ -70,7 +70,7 @@
               <el-form-item label="后端地址:">
 
               <el-select
-                  v-model="http://192.168.2.7:25500/sub?"
+                  v-model="form.backendOptions"
                   allow-create
                   filterable
                   placeholder="请选择"
