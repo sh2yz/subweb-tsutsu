@@ -19,14 +19,6 @@ body::-webkit-scrollbar-track {
     background   : #5f5f5f;
 }
 
-/* 主页面控制按钮 */
-#theme-btn{
-    color:white;
-}
-/* 鼠标悬浮在主页面控制按钮 */
-#theme-btn:hover{
-    color:#e6e6e6;
-}
 
 /* 控制面板设置 */
 /* 窗口 */
