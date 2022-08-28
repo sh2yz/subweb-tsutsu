@@ -88,9 +88,7 @@
                         :value="item.value"
                       ></el-option>
                     </el-option-group>
-
                 </el-select>
-
               </el-form-item>
 
               <div v-if="advanced === '2'">
