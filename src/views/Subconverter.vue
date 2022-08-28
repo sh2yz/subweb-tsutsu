@@ -67,7 +67,7 @@
                 </el-select>
               </el-form-item>
 
-             <el-form-item label="后端地址:">
+              <el-form-item label="后端地址:">
 
               <el-select
                   v-model="form.customBackend"
@@ -79,7 +79,8 @@
                   <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
 
                 </el-select>
-                </el-form-item>
+
+              </el-form-item>
 
               <div v-if="advanced === '2'">
 
@@ -250,10 +251,10 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-        "萌萌の专属后端":"http://192.168.2.7:25500/sub?","萌萌の备用后端":"http://192.168.2.7:25500/sub?",
+          "萌萌の专属后端": "http://192.168.2.7:25500/sub?"
         },
         backendOptions: [
-          { value: "http://192.168.2.7:25500/sub?"}，{ value: "http://yzzz.tk:25500/sub?"}
+          { value: "http://192.168.2.7:25500/sub?" },
         ],
         remoteConfig: [
           {
@@ -482,6 +483,7 @@ export default {
       );
     },
     surgeInstall() {
+      if (this.customSubUrl === "") {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
       }
@@ -495,7 +497,9 @@ export default {
       }
       // 远程接口
       let backend =
-        this.form.customBackend === "" ? "" : this.form.customBackend;
+        this.form.customBackend === ""
+          ? defaultBackend
+          : this.form.customBackend;
       // 远程配置
       let config = this.form.remoteConfig === "" ? "" : this.form.remoteConfig;
       let sourceSub = this.form.sourceSubUrl;
@@ -694,4 +698,3 @@ export default {
   },
 };
 </script>
-
