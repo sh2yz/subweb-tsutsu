@@ -70,7 +70,7 @@
               <el-form-item label="后端地址:">
 
               <el-select
-                  v-model="form.backendOptions"
+                  v-model="form.customBackend"
                   allow-create
                   filterable
                   placeholder="请选择"
@@ -478,7 +478,7 @@ export default {
   },
   created() {
     // document.title = "Subscription Converter";
-    document.title = "つつの订阅转换";
+    document.title = "萌萌の订阅转换";
      this.isPC = this.$getOS().isPc;
     // 获取 url cache
     if (process.env.VUE_APP_USE_STORAGE === 'true') {
@@ -487,7 +487,7 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.form.customBackend = "https://api.tsutsu.one/sub?";
+    this.form.customBackend = "http://192.168.2.7:25500/sub?";
     this.form.remoteConfig = "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full.ini";
     //this.getBackendVersion();
   },
