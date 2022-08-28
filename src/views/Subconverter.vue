@@ -449,8 +449,8 @@ export default {
       var serverList = {};
       let serverKeys = data.options.customBackend[1].options;
       for (let i = 0; i < serverKeys.length; i++) {
-        let key = serverKeys[i].replace(/\(.*/, "");
-        serverList[key] = data.options.customBackend[serverKeys[i]];
+      if (serverKeys[i].label.length > 10) {
+        serverKeys[i].label = serverKeys[i].label.replace(/\s.*/, "");
       }
       data.options.customBackend = serverList;
     }
