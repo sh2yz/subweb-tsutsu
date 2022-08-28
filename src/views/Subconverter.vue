@@ -263,7 +263,7 @@ export default {
               {
                 label: "萌萌-全分组",
                 value:
-                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini"
               },
               {
                 label: "萌萌-精简",
@@ -448,7 +448,7 @@ export default {
   mounted() {
     this.form.clientType = "clash";
     this.form.customBackend = "http://192.168.2.7:25500/sub?";
-    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
     //this.getBackendVersion();
   },
   methods: {
