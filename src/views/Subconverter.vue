@@ -263,17 +263,12 @@ export default {
               {
                 label: "萌萌-全分组",
                 value:
-                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/yzfull.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini"
               },
               {
-                label: "萌萌-全分组-地区自动选择",
+                label: "萌萌-精简",
                 value:
-                  "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full-urltest.ini"
-              },
-              {
-                label: "萌萌-超jb精简分组-含国内分流",
-                value:
-                  "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-mini-gfw.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/mini.ini"
               },
             ]
           },
@@ -281,12 +276,12 @@ export default {
             label: "备用",
             options: [
               {
-                label: "hope140自用配置 (与Github同步)",
+                label: "自用配置 (与Github同步)",
                 value:
                   "https://cdn.staticaly.com/gh/hope140/Clash/beta/hope140.yaml"
               },
               {
-                label: "hope140全分组",
+                label: "全分组",
                 value:
                   "https://cdn.staticaly.com/gh/hope140/Clash/beta/All.yaml"
               },
@@ -453,7 +448,7 @@ export default {
   mounted() {
     this.form.clientType = "clash";
     this.form.customBackend = "http://192.168.2.7:25500/sub?";
-    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/yzfull.ini";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini";
     //this.getBackendVersion();
   },
   methods: {
