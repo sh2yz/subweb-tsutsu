@@ -426,7 +426,7 @@ export default {
         }
       }
       var serverList = {};
-      let serverKeys = Object.keys(data.options.customBackend[1].options);
+      let serverKeys = Object.keys(data.options.customBackend);
       for (let i = 0; i < serverKeys.length; i++) {
         let key = serverKeys[i].replace(/\(.*/, "");
         serverList[key] = data.options.customBackend[serverKeys[i]];
@@ -446,8 +446,9 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.customBackend();
-    this.remoteConfig();
+    this.form.customBackend = "http://192.168.2.7:25500/sub?";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
+    //this.getBackendVersion();
   },
   methods: {
     onCopy() {
@@ -455,6 +456,9 @@ export default {
     },
     goToProject() {
       window.open(project);
+    },
+	gotoTgChannel() {
+      window.open(tgBotLink);
     },
     gotoGayhub() {
       window.open(gayhubRelease);
@@ -478,7 +482,6 @@ export default {
       );
     },
     surgeInstall() {
-      if (this.customSubUrl === "") {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
       }
