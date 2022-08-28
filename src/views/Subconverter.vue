@@ -441,6 +441,70 @@ export default {
     let phoneUserAgent = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
+      if (phoneUserAgent) {
+      let acl4ssrConfig = data.options.remoteConfig[1].options;
+      for (let i = 0; i < acl4ssrConfig.length; i++) {
+        if (acl4ssrConfig[i].label.length > 10) {
+          acl4ssrConfig[i].label = acl4ssrConfig[i].label.replace(/\s.*/, "");
+        }
+      }
+      var serverList = {};
+      let serverKeys = Object.keys(data.options.customBackend);
+      for (let i = 0; i < serverKeys.length; i++) {
+        let key = serverKeys[i].replace(/\(.*/, "");
+        serverList[key] = data.options.customBackend[serverKeys[i]];
+      }
+      data.options.customBackend = serverList;
+    }
+    return data;
+  },
+  created() {
+    // document.title = "Subscription Converter";
+    document.title = "萌萌の订阅转换";
+     this.isPC = this.$getOS().isPc;
+    // 获取 url cache
+    if (process.env.VUE_APP_USE_STORAGE === 'true') {
+      this.form.sourceSubUrl = this.getLocalStorageItem('sourceSubUrl')
+    }
+  },
+  mounted() {
+    mounted() {
+    this.form.clientType = "clash";
+    this.notify();
+    this.getBackendVersion();
+  },
+  methods: {
+    onCopy() {
+      this.$message.success("Copied!");
+    },
+    goToProject() {
+      window.open(project);
+    },
+	gotoTgChannel() {
+      window.open(tgBotLink);
+    },
+    gotoGayhub() {
+      window.open(gayhubRelease);
+    },
+    gotoRemoteConfig() {
+      window.open(remoteConfigSample);
+    },
+    clashInstall() {
+      if (this.customSubUrl === "") {
+        this.$message.error("请先填写必填项，生成订阅链接");
+        return false;
+      }
+      const url = "clash://install-config?url=";
+      window.open(
+        url +
+          encodeURIComponent(
+            this.curtomShortSubUrl !== ""
+              ? this.curtomShortSubUrl
+              : this.customSubUrl
+          )
+      );
+    },
+    surgeInstall() {
       if (this.customSubUrl === "") {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
