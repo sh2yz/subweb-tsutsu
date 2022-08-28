@@ -68,28 +68,15 @@
               </el-form-item>
 
               <el-form-item label="后端地址:">
-
-              <el-select
-                  v-model="form.customBackend"
-                  allow-create
-                  filterable
-                  placeholder="请选择"
-                  style="width: 100%"
-                >
-                  <el-option-group
-                      v-for="group in options.customBackend"
-                      :key="group.label"
-                      :label="group.label"
-                    >
-                      <el-option
-                        v-for="item in group.options"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                      ></el-option>
-                    </el-option-group>
-                </el-select>
-              </el-form-item>
+                  <el-autocomplete
+                    style="width: 100%"
+                    v-model="form.customBackend"
+                    :fetch-suggestions="backendSearch"
+                    placeholder="动动小手，（建议）自行搭建后端服务。例：http://127.0.0.1:25500/sub?"
+                  >
+                    <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
+                  </el-autocomplete>
+                </el-form-item>
 
               <div v-if="advanced === '2'">
 
@@ -447,9 +434,9 @@ export default {
         }
       }
       var serverList = {};
-      let serverKeys = Object.keys(data.options.customBackend);
+      let serverKeys = Object.keys(data.options.customBackend[1].options);
       for (let i = 0; i < serverKeys.length; i++) {
-        let key = serverKeys[i].label.replace(/\s.*/, "");
+        let key = serverKeys[i].replace(/\(.*/, "");
         serverList[key] = data.options.customBackend[serverKeys[i]];
       }
       data.options.customBackend = serverList;
