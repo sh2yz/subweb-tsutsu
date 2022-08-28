@@ -6,13 +6,21 @@
           <div slot="header" style="blackground-color:#0F4677;text-align:center;font-size :25px !important;font-weight: bold !important;">
             <svg-icon icon-class="lock" style="margin-left: 20px" title="完整魔改版:v1.4"/>
             つつの订阅转换
-	    </div>
+            
+          </div>
           <el-container>
             <el-form :model="form" label-width="80px" label-position="left" style="width: 100%;">
               <el-form-item label="进阶选项:">
-	      
-            
-         
+                
+                  <div class="switch">
+                    <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
+                    <label for="cmn-toggle-1"></label>
+                  </div>
+                  
+                  <div class="switch">
+                    <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+                    <label for="cmn-toggle-7" class="cmn-toggle-label" data-on="1" data-off="2"></label>
+                  </div>
 
                 <el-radio v-model="advanced" label="1">基础模式</el-radio>
                 <el-radio v-model="advanced" label="2">进阶模式</el-radio>
