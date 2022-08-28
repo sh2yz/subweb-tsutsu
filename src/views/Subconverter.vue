@@ -263,7 +263,7 @@ export default {
               {
                 label: "萌萌-全分组",
                 value:
-                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/yzfull.ini"
               },
               {
                 label: "萌萌-全分组-地区自动选择",
@@ -373,7 +373,7 @@ export default {
               {
                 label: "基础无规则",
                 value:
-                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/yzfull.ini"
               }
             ]
           }
@@ -453,7 +453,7 @@ export default {
   mounted() {
     this.form.clientType = "clash";
     this.form.customBackend = "http://192.168.2.7:25500/sub?";
-    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/yzfull.ini";
     //this.getBackendVersion();
   },
   methods: {
