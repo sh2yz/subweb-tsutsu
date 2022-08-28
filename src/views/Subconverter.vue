@@ -434,10 +434,32 @@ export default {
       sampleConfig: remoteConfigSample,
       needUdp: false, // 是否需要添加 udp 参数
     };
+    // window.console.log(data.options.remoteConfig);
+    // window.console.log(data.options.customBackend);
+    let phoneUserAgent = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+    if (phoneUserAgent) {
+      let acl4ssrConfig = data.options.remoteConfig[1].options;
+      for (let i = 0; i < acl4ssrConfig.length; i++) {
+        if (acl4ssrConfig[i].label.length > 10) {
+          acl4ssrConfig[i].label = acl4ssrConfig[i].label.replace(/\s.*/, "");
+        }
+      }
+      var serverList = {};
+      let serverKeys = data.options.customBackend[1].options;
+      for (let i = 0; i < serverKeys.length; i++) {
+        let key = serverKeys[i].replace(/\(.*/, "");
+        serverList[key] = data.options.customBackend[serverKeys[i]];
+      }
+      data.options.customBackend = serverList;
+    }
+    return data;
   },
   created() {
+    // document.title = "Subscription Converter";
     document.title = "萌萌の订阅转换";
-    this.isPC = this.$getOS().isPc;
+     this.isPC = this.$getOS().isPc;
     // 获取 url cache
     if (process.env.VUE_APP_USE_STORAGE === 'true') {
       this.form.sourceSubUrl = this.getLocalStorageItem('sourceSubUrl')
@@ -445,8 +467,9 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.notify();
-    this.getBackendVersion();
+    this.form.customBackend = "http://192.168.2.7:25500/sub?";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
+    //this.getBackendVersion();
   },
   methods: {
     onCopy() {
@@ -455,6 +478,9 @@ export default {
     goToProject() {
       window.open(project);
     },
+	gotoTgChannel() {
+      window.open(tgBotLink);
+    },
     gotoGayhub() {
       window.open(gayhubRelease);
     },
@@ -462,6 +488,21 @@ export default {
       window.open(remoteConfigSample);
     },
     clashInstall() {
+      if (this.customSubUrl === "") {
+        this.$message.error("请先填写必填项，生成订阅链接");
+        return false;
+      }
+      const url = "clash://install-config?url=";
+      window.open(
+        url +
+          encodeURIComponent(
+            this.curtomShortSubUrl !== ""
+              ? this.curtomShortSubUrl
+              : this.customSubUrl
+          )
+      );
+    },
+    surgeInstall() {
       if (this.customSubUrl === "") {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
@@ -476,7 +517,9 @@ export default {
       }
       // 远程接口
       let backend =
-        this.form.customBackend === "" ? "" : this.form.customBackend;
+        this.form.customBackend === ""
+          ? defaultBackend
+          : this.form.customBackend;
       // 远程配置
       let config = this.form.remoteConfig === "" ? "" : this.form.remoteConfig;
       let sourceSub = this.form.sourceSubUrl;
@@ -675,18 +718,4 @@ export default {
   },
 };
 </script>
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
 
