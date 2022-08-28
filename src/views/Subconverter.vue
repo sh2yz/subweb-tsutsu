@@ -436,19 +436,17 @@ export default {
     };
   },
   created() {
-    // document.title = "Subscription Converter";
     document.title = "萌萌の订阅转换";
-     this.isPC = this.$getOS().isPc;
+    this.isPC = this.$getOS().isPc;
     // 获取 url cache
     if (process.env.VUE_APP_USE_STORAGE === 'true') {
       this.form.sourceSubUrl = this.getLocalStorageItem('sourceSubUrl')
     }
   },
-   mounted() {
+  mounted() {
     this.form.clientType = "clash";
-    this.form.customBackend = "http://192.168.2.7:25500/sub?";
-    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
-    //this.getBackendVersion();
+    this.notify();
+    this.getBackendVersion();
   },
   methods: {
     onCopy() {
@@ -457,9 +455,6 @@ export default {
     goToProject() {
       window.open(project);
     },
-	gotoTgChannel() {
-      window.open(tgBotLink);
-    },
     gotoGayhub() {
       window.open(gayhubRelease);
     },
@@ -467,21 +462,6 @@ export default {
       window.open(remoteConfigSample);
     },
     clashInstall() {
-      if (this.customSubUrl === "") {
-        this.$message.error("请先填写必填项，生成订阅链接");
-        return false;
-      }
-      const url = "clash://install-config?url=";
-      window.open(
-        url +
-          encodeURIComponent(
-            this.curtomShortSubUrl !== ""
-              ? this.curtomShortSubUrl
-              : this.customSubUrl
-          )
-      );
-    },
-    surgeInstall() {
       if (this.customSubUrl === "") {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
