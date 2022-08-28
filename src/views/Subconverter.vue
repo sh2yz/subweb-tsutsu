@@ -434,27 +434,6 @@ export default {
       sampleConfig: remoteConfigSample,
       needUdp: false, // 是否需要添加 udp 参数
     };
-    // window.console.log(data.options.remoteConfig);
-    // window.console.log(data.options.customBackend);
-    let phoneUserAgent = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-    if (phoneUserAgent) {
-      let acl4ssrConfig = data.options.remoteConfig[1].options;
-      for (let i = 0; i < acl4ssrConfig.length; i++) {
-        if (acl4ssrConfig[i].label.length > 10) {
-          acl4ssrConfig[i].label = acl4ssrConfig[i].label.replace(/\s.*/, "");
-        }
-      }
-      var serverList = {};
-      let serverKeys = Object.keys(data.options.customBackend);
-      for (let i = 0; i < serverKeys.length; i++) {
-        let key = serverKeys[i].replace(/\(.*/, "");
-        serverList[key] = data.options.customBackend[serverKeys[i]];
-      }
-      data.options.customBackend = serverList;
-    }
-    return data;
   },
   created() {
     // document.title = "Subscription Converter";
