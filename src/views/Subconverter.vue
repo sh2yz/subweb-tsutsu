@@ -453,7 +453,7 @@ export default {
   mounted() {
     this.form.clientType = "clash";
     this.form.customBackend = "http://192.168.2.7:25500/sub?";
-    this.form.remoteConfig = "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full.ini";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini";
     //this.getBackendVersion();
   },
   methods: {
