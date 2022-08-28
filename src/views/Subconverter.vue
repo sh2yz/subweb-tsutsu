@@ -254,10 +254,10 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "つつの专属后端 (六核负载均衡-支持IPv4/IPv6)": "https://api.tsutsu.one/sub?",
+          "つつの专属后端 (六核负载均衡-支持IPv4/IPv6)": "http://192.168.2.7:25500/sub?",
         },
         backendOptions: [
-          { value: "https://api.tsutsu.one/sub?" },
+          { value: "http://192.168.2.7:25500/sub?" },
         ],
         remoteConfig: [
           {
