@@ -447,10 +447,10 @@ export default {
         }
       }
       var serverList = {};
-      let serverKeys = data.options.customBackend[1].options;
+      let serverKeys = Object.keys(data.options.customBackend);
       for (let i = 0; i < serverKeys.length; i++) {
-      if (serverKeys[i].label.length > 10) {
-        serverKeys[i].label = serverKeys[i].label.replace(/\s.*/, "");
+        let key = serverKeys[i].label.replace(/\s.*/, "");
+        serverList[key] = data.options.customBackend[serverKeys[i]];
       }
       data.options.customBackend = serverList;
     }
