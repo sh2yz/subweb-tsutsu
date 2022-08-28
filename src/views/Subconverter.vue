@@ -441,7 +441,7 @@ export default {
     let phoneUserAgent = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
-      if (phoneUserAgent) {
+    if (phoneUserAgent) {
       let acl4ssrConfig = data.options.remoteConfig[1].options;
       for (let i = 0; i < acl4ssrConfig.length; i++) {
         if (acl4ssrConfig[i].label.length > 10) {
@@ -468,10 +468,10 @@ export default {
     }
   },
   mounted() {
-    mounted() {
     this.form.clientType = "clash";
-    this.notify();
-    this.getBackendVersion();
+    this.form.customBackend = "http://192.168.2.7:25500/sub?";
+    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
+    //this.getBackendVersion();
   },
   methods: {
     onCopy() {
@@ -490,21 +490,6 @@ export default {
       window.open(remoteConfigSample);
     },
     clashInstall() {
-      if (this.customSubUrl === "") {
-        this.$message.error("请先填写必填项，生成订阅链接");
-        return false;
-      }
-      const url = "clash://install-config?url=";
-      window.open(
-        url +
-          encodeURIComponent(
-            this.curtomShortSubUrl !== ""
-              ? this.curtomShortSubUrl
-              : this.customSubUrl
-          )
-      );
-    },
-    surgeInstall() {
       if (this.customSubUrl === "") {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
