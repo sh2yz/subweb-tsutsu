@@ -511,28 +511,12 @@ export default {
         this.$message.error("订阅链接与客户端为必填项");
         return false;
       }
-      // 远程接口
       let backend =
         this.form.customBackend === ""
           ? defaultBackend
           : this.form.customBackend;
-      // 远程配置
-      let config = this.form.remoteConfig === "" ? "" : this.form.remoteConfig;
       let sourceSub = this.form.sourceSubUrl;
       sourceSub = sourceSub.replace(/(\n|\r|\n\r)/g, "|");
-      // 薯条屏蔽
-      if (sourceSub.indexOf("losadhwse") !== -1 && (backend.indexOf("py6.pw") !== -1 || backend.indexOf("subconverter-web.now.sh") !== -1 || backend.indexOf("subconverter.herokuapp.com") !== -1 || backend.indexOf("api.wcc.best") !== -1)) {
-        this.$alert('此机场订阅已将该后端屏蔽，请自建后端转换。', '转换错误提示', {
-          confirmButtonText: '确定',
-          callback: action => {
-            this.$message({
-              type: 'error',
-              message: `action: ${ action }`
-            });
-          }
-        });
-        return false;
-      }
       this.customSubUrl =
         backend +
         "target=" +
@@ -541,10 +525,11 @@ export default {
         encodeURIComponent(sourceSub) +
         "&insert=" +
         this.form.insert;
-      if (config !== "") {
-        this.customSubUrl += "&config=" + encodeURIComponent(config);
-      }
       if (this.advanced === "2") {
+        if (this.form.remoteConfig !== "") {
+          this.customSubUrl +=
+            "&config=" + encodeURIComponent(this.form.remoteConfig);
+        }
         if (this.form.excludeRemarks !== "") {
           this.customSubUrl +=
             "&exclude=" + encodeURIComponent(this.form.excludeRemarks);
@@ -573,9 +558,7 @@ export default {
           "&fdn=" +
           this.form.fdn.toString() +
           "&sort=" +
-          this.form.sort.toString() +
-          "&expand=" +
-          this.form.expand.toString();
+          this.form.sort.toString();
         if (this.needUdp) {
           this.customSubUrl += "&udp=" + this.form.udp.toString()
         }
@@ -622,6 +605,18 @@ export default {
           this.loading = false;
         });
     },
+    notify() {
+      const h = this.$createElement;
+      this.$notify({
+        title: "隐私提示",
+        type: "warning",
+        message: h(
+          "i",
+          { style: "color: teal" },
+          "各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。"
+        )
+      });
+    },
     confirmUploadConfig() {
       if (this.uploadConfig === "") {
         this.$message.warning("远程配置不能为空");
@@ -638,19 +633,20 @@ export default {
           }
         })
         .then(res => {
-          if (res.data.code === 0 && res.data.data !== "") {
-            this.$message.success("远程配置上传成功，配置链接已复制到剪贴板");
-            
+          if (res.data.Code === 1 && res.data.url !== "") {
+            this.$message.success(
+              "远程配置上传成功，配置链接已复制到剪贴板，有效期三个月望知悉"
+            );
             // 自动填充至『表单-远程配置』
-            this.form.remoteConfig = res.data.data;
+            this.form.remoteConfig = res.data.Url;
             this.$copyText(this.form.remoteConfig);
             this.dialogUploadConfigVisible = false;
           } else {
-            this.$message.error("远程配置上传失败..");
+            this.$message.error("远程配置上传失败：" + res.data.Message);
           }
         })
         .catch(() => {
-          this.$message.error("远程配置上传失败..");
+          this.$message.error("远程配置上传失败");
         })
         .finally(() => {
           this.loading = false;
