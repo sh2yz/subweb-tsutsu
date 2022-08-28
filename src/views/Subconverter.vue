@@ -373,7 +373,7 @@ export default {
               {
                 label: "基础无规则",
                 value:
-                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/yzfull.ini"
+                  "https://cdn.staticaly.com/gh/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini.ini"
               }
             ]
           }
