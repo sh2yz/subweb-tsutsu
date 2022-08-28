@@ -263,7 +263,7 @@ export default {
               {
                 label: "萌萌-全分组",
                 value:
-                  "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini"
               },
               {
                 label: "萌萌-全分组-地区自动选择",
@@ -277,38 +277,13 @@ export default {
               },
             ]
           },
-	{
-            label: "萌萌の机场定制",
-            options: [
-              {
-                label: "Immtelecom",
-                value:
-                  "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full-urltest-imm.ini"
-              },
-              {
-                label: "Skicat",
-                value:
-                  "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full-skicat.ini"
-              },
-              {
-                label: "Maoport",
-                value:
-                  "https://raw.githubusercontent.com/lhl77/sub-ini/main/tsutsu-maoport-full.ini"
-              },
-            ]
-          },
           {
-            label: "用户投稿",
+            label: "备用",
             options: [
               {
                 label: "hope140自用配置 (与Github同步)",
                 value:
                   "https://cdn.staticaly.com/gh/hope140/Clash/beta/hope140.yaml"
-              },
-              {
-                label: "hope140去广告配置",
-                value:
-                  "https://cdn.staticaly.com/gh/hope140/Clash/beta/Adblock.yaml"
               },
               {
                 label: "hope140全分组",
@@ -319,16 +294,6 @@ export default {
                 label: "Yuki隐藏国内IP属地-极简",
                 value:
                   "https://raw.githubusercontent.com/godlikeanyone/Rules/master/subconvert.ini"
-              },
-              {
-                label: "AllenXu精简版多国家",
-                value:
-                  "https://raw.githubusercontent.com/hyt-allen-xu/webcdn/master/cdn_multicountry.ini"
-              },
-              {
-                label: "AllenXu小机场专用",
-                value:
-                  "https://raw.githubusercontent.com/hyt-allen-xu/webcdn/master/smallairport.ini"
               },
               {
                 label: "酷酷规则",
