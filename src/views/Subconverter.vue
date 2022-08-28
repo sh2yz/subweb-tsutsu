@@ -373,7 +373,7 @@ export default {
               {
                 label: "基础无规则",
                 value:
-                  "https://subconverter.oss-ap-southeast-1.aliyuncs.com/Rules/RemoteConfig/special/basic.ini"
+                  "https://raw.githubusercontent.com/sh2yz/sub-ini/main/full.ini"
               }
             ]
           }
