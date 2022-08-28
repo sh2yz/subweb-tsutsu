@@ -67,15 +67,18 @@
                 </el-select>
               </el-form-item>
 
-              <el-form-item label="后端地址:">
-                  <el-autocomplete
-                    style="width: 100%"
-                    v-model="form.customBackend"
-                    :fetch-suggestions="backendSearch"
-                    placeholder="动动小手，（建议）自行搭建后端服务。例：http://127.0.0.1:25500/sub?"
-                  >
-                    <el-button slot="append" @click="gotoGayhub" icon="el-icon-link">前往项目仓库</el-button>
-                  </el-autocomplete>
+             <el-form-item label="后端地址:">
+
+              <el-select
+                  v-model="form.customBackend"
+                  allow-create
+                  filterable
+                  placeholder="请选择"
+                  style="width: 100%"
+                >
+                  <el-option v-for="(v, k) in options.customBackend" :key="k" :label="k" :value="v"></el-option>
+
+                </el-select>
                 </el-form-item>
 
               <div v-if="advanced === '2'">
@@ -246,11 +249,12 @@ export default {
           "混合订阅（mixed）": "mixed",
           "自动判断客户端": "auto",
         },
-        customBackend: [
-          {"萌萌の专属后端":"http://192.168.2.7:25500/sub?"},
-          {"萌萌の备用后端":"http://192.168.2.7:25500/sub?"}
-         ],
-        backendOptions: [{ value: "http://192.168.2.7:25500/sub?"}，{ value: "http://yzzz.tk:25500/sub?"}],
+        customBackend: {
+        "萌萌の专属后端":"http://192.168.2.7:25500/sub?","萌萌の备用后端":"http://192.168.2.7:25500/sub?",
+        },
+        backendOptions: [
+          { value: "http://192.168.2.7:25500/sub?"}，{ value: "http://yzzz.tk:25500/sub?"}
+        ],
         remoteConfig: [
           {
             label: "萌萌の专属规则",
