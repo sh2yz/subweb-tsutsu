@@ -467,9 +467,8 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.form.customBackend = "http://192.168.2.7:25500/sub?";
-    this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
-    //this.getBackendVersion();
+    this.notify();
+    this.getBackendVersion();
   },
   methods: {
     onCopy() {
@@ -477,9 +476,6 @@ export default {
     },
     goToProject() {
       window.open(project);
-    },
-	gotoTgChannel() {
-      window.open(tgBotLink);
     },
     gotoGayhub() {
       window.open(gayhubRelease);
