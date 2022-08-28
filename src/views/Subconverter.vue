@@ -250,7 +250,11 @@ export default {
           "混合订阅（mixed）": "mixed",
           "自动判断客户端": "auto",
         },
-        customBackend:  [
+        customBackend: [
+              {label: "萌萌の专属后端": "http://192.168.2.7:25500/sub?" },
+	      {label: "萌萌の备用后端": "http://yzzz.tk:25500/sub?" }
+	      ]
+        backendOptions:  [
           {
             label: "萌萌の后端",
             options: [
