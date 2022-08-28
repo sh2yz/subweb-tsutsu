@@ -5,8 +5,8 @@
         <el-card style="margin-top:20px;max-width:800px;margin:auto;opacity:0.8;blackground-color:#0F4677;border-radius: 20px;">
           <div slot="header" style="blackground-color:#0F4677;text-align:center;font-size :25px !important;font-weight: bold !important;">
             <svg-icon icon-class="lock" style="margin-left: 20px" title="完整魔改版:v1.4"/>
-            つつの订阅转换
-            
+            萌萌の订阅转换
+            <svg-icon icon-class="telegram" style="margin-left: 10px" title="加入Telegram吹水群" @click="gotoTgChannel" />
           </div>
           <el-container>
             <el-form :model="form" label-width="80px" label-position="left" style="width: 100%;">
@@ -16,7 +16,10 @@
                     <input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round" type="checkbox">
                     <label for="cmn-toggle-1"></label>
                   </div>
-                  
+                  <div class="switch">
+                    <input id="cmn-toggle-4" click = "selectMode()" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
+                    <label for="cmn-toggle-4" ></label>
+                  </div>
                   <div class="switch">
                     <input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
                     <label for="cmn-toggle-7" class="cmn-toggle-label" data-on="1" data-off="2"></label>
@@ -219,16 +222,13 @@ const defaultBackend = process.env.VUE_APP_SUBCONVERTER_DEFAULT_BACKEND + '/sub?
 const shortUrlBackend = process.env.VUE_APP_MYURLS_DEFAULT_BACKEND + '/short'
 const configUploadBackend = process.env.VUE_APP_CONFIG_UPLOAD_BACKEND + '/sub.php'
 const tgBotLink = process.env.VUE_APP_BOT_LINK
-
 export default {
   data() {
     var data = {
       backendVersion: '0.6.4',
       advanced: "1",
-
       // 是否为 PC 端
       isPC: true,
-
       options: {
         clientTypes: {
           Clash: "clash",
@@ -251,34 +251,34 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "つつの专属后端 (六核负载均衡-支持IPv4/IPv6)": "http://192.168.2.7:25500/sub?",
+          "萌萌の专属后端": "http://192.168.2.7:25500/sub?",
         },
         backendOptions: [
           { value: "http://192.168.2.7:25500/sub?" },
         ],
         remoteConfig: [
           {
-            label: "つつの专属规则",
+            label: "萌萌の专属规则",
             options: [
               {
-                label: "つつ-全分组",
+                label: "萌萌-全分组",
                 value:
                   "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full.ini"
               },
               {
-                label: "つつ-全分组-地区自动选择",
+                label: "萌萌-全分组-地区自动选择",
                 value:
                   "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-full-urltest.ini"
               },
               {
-                label: "つつ-超jb精简分组-含国内分流",
+                label: "萌萌-超jb精简分组-含国内分流",
                 value:
                   "https://cdn.jsdelivr.net/gh/lhl77/sub-ini@main/tsutsu-mini-gfw.ini"
               },
             ]
           },
 	{
-            label: "つつの机场定制",
+            label: "萌萌の机场定制",
             options: [
               {
                 label: "Immtelecom",
@@ -298,7 +298,7 @@ export default {
             ]
           },
           {
-            label: "用户投稿,投稿请tg找 @Ox208",
+            label: "用户投稿",
             options: [
               {
                 label: "hope140自用配置 (与Github同步)",
@@ -444,26 +444,21 @@ export default {
           }
         }
       },
-
       loading: false,
       customSubUrl: "",
       curtomShortSubUrl: "",
-
       dialogUploadConfigVisible: false,
       uploadConfig: "",
       uploadPassword: "",
       myBot: tgBotLink,
       sampleConfig: remoteConfigSample,
-
       needUdp: false, // 是否需要添加 udp 参数
     };
-
     // window.console.log(data.options.remoteConfig);
     // window.console.log(data.options.customBackend);
     let phoneUserAgent = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
-
     if (phoneUserAgent) {
       let acl4ssrConfig = data.options.remoteConfig[1].options;
       for (let i = 0; i < acl4ssrConfig.length; i++) {
@@ -485,7 +480,6 @@ export default {
     // document.title = "Subscription Converter";
     document.title = "つつの订阅转换";
      this.isPC = this.$getOS().isPc;
-
     // 获取 url cache
     if (process.env.VUE_APP_USE_STORAGE === 'true') {
       this.form.sourceSubUrl = this.getLocalStorageItem('sourceSubUrl')
@@ -518,7 +512,6 @@ export default {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
       }
-
       const url = "clash://install-config?url=";
       window.open(
         url +
@@ -534,7 +527,6 @@ export default {
         this.$message.error("请先填写必填项，生成订阅链接");
         return false;
       }
-
       const url = "surge://install-config?url=";
       window.open(url + this.customSubUrl);
     },
@@ -548,13 +540,10 @@ export default {
         this.form.customBackend === ""
           ? defaultBackend
           : this.form.customBackend;
-
       // 远程配置
       let config = this.form.remoteConfig === "" ? "" : this.form.remoteConfig;
-
       let sourceSub = this.form.sourceSubUrl;
       sourceSub = sourceSub.replace(/(\n|\r|\n\r)/g, "|");
-
       // 薯条屏蔽
       if (sourceSub.indexOf("losadhwse") !== -1 && (backend.indexOf("py6.pw") !== -1 || backend.indexOf("subconverter-web.now.sh") !== -1 || backend.indexOf("subconverter.herokuapp.com") !== -1 || backend.indexOf("api.wcc.best") !== -1)) {
         this.$alert('此机场订阅已将该后端屏蔽，请自建后端转换。', '转换错误提示', {
@@ -568,7 +557,6 @@ export default {
         });
         return false;
       }
-
       this.customSubUrl =
         backend +
         "target=" +
@@ -577,11 +565,9 @@ export default {
         encodeURIComponent(sourceSub) +
         "&insert=" +
         this.form.insert;
-
       if (config !== "") {
         this.customSubUrl += "&config=" + encodeURIComponent(config);
       }
-
       if (this.advanced === "2") {
         if (this.form.excludeRemarks !== "") {
           this.customSubUrl +=
@@ -599,7 +585,6 @@ export default {
           this.customSubUrl +=
             "&append_type=" + this.form.appendType.toString();
         }
-
         this.customSubUrl +=
           "&emoji=" +
           this.form.emoji.toString() +
@@ -615,7 +600,6 @@ export default {
           this.form.sort.toString() +
           "&expand=" +
           this.form.expand.toString();
-
         if (this.needUdp) {
           this.customSubUrl += "&udp=" + this.form.udp.toString()
         }
@@ -637,12 +621,9 @@ export default {
         this.$message.warning("请先生成订阅链接，再获取对应短链接");
         return false;
       }
-
       this.loading = true;
-
       let data = new FormData();
       data.append("longUrl", btoa(this.customSubUrl));
-
       this.$axios
         .post(shortUrlBackend, data, {
           header: {
@@ -670,13 +651,10 @@ export default {
         this.$message.warning("远程配置不能为空");
         return false;
       }
-
       this.loading = true;
-
       let data = new FormData();
       data.append("password", this.uploadPassword);
       data.append("config", this.uploadConfig);
-
       this.$axios
         .post(configUploadBackend, data, {
           header: {
@@ -687,11 +665,9 @@ export default {
           if (res.data.code === 0 && res.data.data !== "") {
             this.$message.success("远程配置上传成功，配置链接已复制到剪贴板");
             
-
             // 自动填充至『表单-远程配置』
             this.form.remoteConfig = res.data.data;
             this.$copyText(this.form.remoteConfig);
-
             this.dialogUploadConfigVisible = false;
           } else {
             this.$message.error("远程配置上传失败..");
@@ -706,11 +682,9 @@ export default {
     },
     backendSearch(queryString, cb) {
       let backends = this.options.backendOptions;
-
       let results = queryString
         ? backends.filter(this.createFilter(queryString))
         : backends;
-
       // 调用 callback 返回建议列表的数据
       cb(results);
     },
@@ -739,7 +713,6 @@ export default {
     getLocalStorageItem(itemKey) {
       const now = +new Date()
       let ls = localStorage.getItem(itemKey)
-
       let itemValue = ''
       if (ls !== null) {
         let data = JSON.parse(ls)
@@ -749,13 +722,11 @@ export default {
           localStorage.removeItem(itemKey)
         }
       }
-
       return itemValue
     },
     setLocalStorageItem(itemKey, itemValue) {
       const ttl = process.env.VUE_APP_CACHE_TTL
       const now = +new Date()
-
       let data = {
         setTime: now,
         ttl: parseInt(ttl),
@@ -765,7 +736,5 @@ export default {
       localStorage.setItem(itemKey, JSON.stringify(data))
     }
   },
-
 };
-
 </script>
