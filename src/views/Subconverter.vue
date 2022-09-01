@@ -251,10 +251,10 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "萌萌の专属后端": "http://192.168.2.7:25500/sub?"
+          "萌萌の专属后端": "http://yznas.tk:25500/sub?"
         },
         backendOptions: [
-          { value: "http://192.168.2.7:25500/sub?" },
+          { value: "http://yznas.tk:25500/sub?" },
         ],
         remoteConfig: [
           {
@@ -447,7 +447,7 @@ export default {
   },
   mounted() {
     this.form.clientType = "clash";
-    this.form.customBackend = "http://192.168.2.7:25500/sub?";
+    this.form.customBackend = "http://yznas.tk:25500/sub?";
     this.form.remoteConfig = "https://raw.githubusercontent.com/sh2yz/sub-ini/main/all.ini";
     //this.getBackendVersion();
   },
