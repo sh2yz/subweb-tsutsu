@@ -251,10 +251,10 @@ export default {
           "自动判断客户端": "auto",
         },
         customBackend: {
-          "萌萌の专属后端": "http://yznas.tk:25500/sub?"
+          "萌萌の专属后端": "http://yinmm.top:25500/sub?"
         },
         backendOptions: [
-          { value: "http://yznas.eu.org:25500/sub?" },
+          { value: "http://yinmm.top:25500/sub?" },
         ],
         remoteConfig: [
           {
