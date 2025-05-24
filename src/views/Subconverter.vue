@@ -254,7 +254,7 @@ export default {
           "萌萌の专属后端": "http://yznas.tk:25500/sub?"
         },
         backendOptions: [
-          { value: "http://yznas.tk:25500/sub?" },
+          { value: "http://yznas.eu.org:25500/sub?" },
         ],
         remoteConfig: [
           {
